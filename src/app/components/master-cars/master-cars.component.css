@@ -1,0 +1,53 @@
+.view-mode {
+    float: right;
+    zoom: 1;
+    background-color: #F4f4f4;
+    border-radius: 0.2rem;
+    margin: 0.5rem;
+}
+.view-mode .view-mode__selector {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.view-mode .view-mode__selector .view-mode__selector__item {
+    float: right;
+    width: 45%;
+    margin: 2%;
+    background: #CCC;
+    color: #fff;
+    font-size: 100%;
+}
+.view-mode .view-mode__selector .view-mode__selector__item.active {
+    background-color: #9d9d9d;
+}
+.view-mode .view-mode__selector .view-mode__selector__item a {
+    display: block;
+    margin: 0 auto;
+}
+.model-search {
+    float: left;
+    zoom: 1;
+    padding-left: 18px;
+    width: 80%;
+    font-weight: bold;
+}
+.card.card-list.row {
+    flex-direction: row;
+}
+.compare-section {
+    background: #0070FF;
+    line-height: 2;
+    text-align: center;
+    color: #042E64;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #84BAFF;
+    box-shadow: 0 0 15px #00214B;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

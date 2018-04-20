@@ -1,0 +1,63 @@
+<div class="view-mode col-lg-2 col-sm-3 col-xs-3">
+    <ul class="view-mode__selector">
+        <li [class.active]="viewMode == 'grid'" class="view-mode__selector__item btn btn-sm">
+            <a (click)="switchViewMode('grid')">
+                <i class="fa fa-th-large"></i>
+            </a>
+        </li>
+        <li [class.active]="viewMode == 'list'" class="view-mode__selector__item btn btn-sm">
+            <a (click)="switchViewMode('list')">
+                <i class="fa fa-th-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="model-search">
+        <div class="form-group row">
+            <label for="searchText" class="col-sm-2 col-form-label">Model Search: </label>
+            <div class="col-sm-10">
+                <input [(ngModel)]="searchText" class="form-control" placeholder="Model">
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="row">
+            <div [class]="viewMode == 'grid' ? 'col-md-3' : 'col-md-12'" *ngFor="let car of listOfcars | filter : searchText">
+                <div [class.card-list]="viewMode == 'list'" [class.row]="viewMode == 'list'" class="card box-shadow">
+                    <div [class.col-4]="viewMode == 'list'">
+                        <img class="card-img-right card-img-top img-thumbnail" routerLink="/detail/{{car.id}}" 
+                        data-src="{{car.thumbnail}}" alt="Card image cap">
+                    </div>
+                
+                    <div [class.col-8]="viewMode == 'list'">
+                        <div class="card-body">
+                            <div routerLink="/detail/{{car.id}}" class="card-text">
+                                <h4>{{car.brand}}, {{car.model}}</h4>
+                                <strong>Year:</strong> {{car.year}}<br/>
+                                <strong>Information:</strong> {{car.information | slice:0:90 }}
+                            </div>
+                            <br/>
+                            <div class="justify-content-between">
+                                <div class="btn-group">
+                                    <button type="button" (click)="toggleComparison(car)" 
+                                    class="btn btn-sm" [class.btn-danger]="car.selected" 
+                                    [class.btn-outline-danger]="!car.selected" 
+                                    [disabled]="disableButton(car)"
+                                    *ngIf="isComparationAvailable">Compare</button>
+                                </div>
+                                <small class="text-muted pull-right">{{car.price}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="compare-section" [hidden]="comparationItems.length < 2">
+    Ready to compare selected models? <button type="button" (click)="compareModels()" class="btn btn-warning" >Compare</button>
+</div>
