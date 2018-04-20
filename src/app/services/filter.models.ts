@@ -11,8 +11,8 @@ export class FilterPipe implements PipeTransform {
     if(!items) return [];
     if(!searchText) return items;
     searchText = searchText.toLowerCase();
-    return items.filter( it => {
-      return it.model.toLowerCase().includes(searchText);
+    return items.filter( car => {
+      return car.model.toLowerCase().includes(searchText);
     });
    }
 }

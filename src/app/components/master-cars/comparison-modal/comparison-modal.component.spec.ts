@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComparatorComponent } from './comparator.component';
+import { ComparisonModalComponent } from './comparison-modal.component';
 
-describe('ComparatorComponent', () => {
-  let component: ComparatorComponent;
-  let fixture: ComponentFixture<ComparatorComponent>;
+describe('ComparisonModalComponent', () => {
+  let component: ComparisonModalComponent;
+  let fixture: ComponentFixture<ComparisonModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComparatorComponent ]
+      declarations: [ ComparisonModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComparatorComponent);
+    fixture = TestBed.createComponent(ComparisonModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

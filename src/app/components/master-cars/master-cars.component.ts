@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { SlicePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Car } from './../../models/car';
+import { Car } from '../../models/car';
 import { CarDataService } from '../../services/car.data.service';
+import { ComparisonModalComponent } from './comparison-modal/comparison-modal.component';
 
 @Component({
   selector: 'app-master-cars',
@@ -12,13 +14,16 @@ import { CarDataService } from '../../services/car.data.service';
 })
 
 export class MasterCarsComponent implements OnInit {
+  comparationItems:Car[] = [];
   listOfcars:Car[];
   isComparationAvailable:boolean = true;
-  comparationItems:Car[] = [];
   viewMode:string = 'grid';
   searchText:string = "";
   
-  constructor(private carData: CarDataService) { }
+  constructor(
+    private carData: CarDataService, 
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
     this.carData.getAll().subscribe((data) => { 
@@ -47,10 +52,16 @@ export class MasterCarsComponent implements OnInit {
     this.removeComparationElement(item);
   }
 
-  compareModels() {
-    
+  compareModels(comparateModal) {
+    this.modalService.open(comparateModal, { size: 'lg' }).result.then((result) => {
+      console.log("LELT " + result);
+      this.comparationItems=[];
+    }, (reason) => {
+      console.log("AHHH" + reason);
+      this.comparationItems=[];
+    });
+    this.removeComparisonFlag();
   }
-
 
   private sortListOfCars() {
     this.listOfcars.sort(function(a, b){
@@ -77,6 +88,10 @@ export class MasterCarsComponent implements OnInit {
     return -1;
   }
 
-
+  private removeComparisonFlag() {
+    for(var i = 0; i < this.listOfcars.length; i++) {
+      this.listOfcars[i].selected = false;
+    }
+  }
 
 }
