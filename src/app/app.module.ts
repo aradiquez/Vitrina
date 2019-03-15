@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CarDataService } from './services/car.data.service';
@@ -12,6 +12,8 @@ import { DetailCarsComponent } from './components/detail-cars/detail-cars.compon
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FilterPipe } from './services/filter.models';
 import { ComparisonModalComponent } from './components/master-cars/comparison-modal/comparison-modal.component';
+
+const patito2 = 'manzana';
 
 const appRoutes: Routes = [
   { path: '', component: MasterCarsComponent },
